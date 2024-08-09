@@ -1,4 +1,6 @@
 using Ebookapp.API.Context;
+using Ebookapp.API.Interfaces;
+using Ebookapp.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,8 @@ builder.Services.AddSwaggerGen();
 // Add services to the container.
 builder.Services.AddDbContext<EBookContextDB>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IBookServices, BookService>();
 
 
 var app = builder.Build();
